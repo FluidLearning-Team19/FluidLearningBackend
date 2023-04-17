@@ -1,7 +1,7 @@
-package com.uiktp.finki.ukim.fluidlearning.service;
+package com.uiktp.finki.ukim.fluidlearning.Service;
 
-import com.uiktp.finki.ukim.fluidlearning.models.Category;
-import com.uiktp.finki.ukim.fluidlearning.models.dto.CategoryDto;
+import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Category;
+import com.uiktp.finki.ukim.fluidlearning.Models.dto.CategoryDto;
 
 import java.util.List;
 import java.util.Optional;

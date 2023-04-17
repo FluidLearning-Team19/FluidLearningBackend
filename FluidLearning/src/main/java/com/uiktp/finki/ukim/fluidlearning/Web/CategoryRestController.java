@@ -1,8 +1,8 @@
-package com.uiktp.finki.ukim.fluidlearning.web;
+package com.uiktp.finki.ukim.fluidlearning.Web;
 
-import com.uiktp.finki.ukim.fluidlearning.models.Category;
-import com.uiktp.finki.ukim.fluidlearning.models.dto.CategoryDto;
-import com.uiktp.finki.ukim.fluidlearning.service.CategoryService;
+import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Category;
+import com.uiktp.finki.ukim.fluidlearning.Models.dto.CategoryDto;
+import com.uiktp.finki.ukim.fluidlearning.Service.CategoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/data/category")
+@CrossOrigin(value = "*")
 public class CategoryRestController {
     private final CategoryService categoryService;
 

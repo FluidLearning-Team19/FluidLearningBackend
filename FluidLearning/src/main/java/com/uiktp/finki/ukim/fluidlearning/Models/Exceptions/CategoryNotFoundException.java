@@ -1,4 +1,4 @@
-package com.uiktp.finki.ukim.fluidlearning.models.exceptions;
+package com.uiktp.finki.ukim.fluidlearning.Models.Exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -1,6 +1,6 @@
-package com.uiktp.finki.ukim.fluidlearning.repository;
+package com.uiktp.finki.ukim.fluidlearning.Repository;
 
-import com.uiktp.finki.ukim.fluidlearning.models.Category;
+import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

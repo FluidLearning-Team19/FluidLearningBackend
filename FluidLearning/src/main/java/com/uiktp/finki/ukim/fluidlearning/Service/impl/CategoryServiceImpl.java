@@ -1,10 +1,10 @@
-package com.uiktp.finki.ukim.fluidlearning.service.impl;
+package com.uiktp.finki.ukim.fluidlearning.Service.impl;
 
-import com.uiktp.finki.ukim.fluidlearning.models.Category;
-import com.uiktp.finki.ukim.fluidlearning.models.dto.CategoryDto;
-import com.uiktp.finki.ukim.fluidlearning.models.exceptions.CategoryNotFoundException;
-import com.uiktp.finki.ukim.fluidlearning.repository.CategoryRepository;
-import com.uiktp.finki.ukim.fluidlearning.service.CategoryService;
+import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Category;
+import com.uiktp.finki.ukim.fluidlearning.Models.dto.CategoryDto;
+import com.uiktp.finki.ukim.fluidlearning.Models.Exceptions.CategoryNotFoundException;
+import com.uiktp.finki.ukim.fluidlearning.Repository.CategoryRepository;
+import com.uiktp.finki.ukim.fluidlearning.Service.CategoryService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,6 +39,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Optional<Category> save(CategoryDto categoryDto) {
+        //TODO Don't delete it if exists. Return message that object already exists.
         this.categoryRepository.deleteByName(categoryDto.getName());
         Category category = new Category();
         category.setName(categoryDto.getName());

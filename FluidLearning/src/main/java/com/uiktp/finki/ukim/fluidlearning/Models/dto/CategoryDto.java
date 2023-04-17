@@ -1,4 +1,4 @@
-package com.uiktp.finki.ukim.fluidlearning.models.dto;
+package com.uiktp.finki.ukim.fluidlearning.Models.dto;
 
 import lombok.Data;
 

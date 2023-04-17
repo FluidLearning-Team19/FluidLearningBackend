@@ -1,13 +1,11 @@
-package com.uiktp.finki.ukim.fluidlearning.models;
+package com.uiktp.finki.ukim.fluidlearning.Models.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
+@Table(name="Category", schema="dbo")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
