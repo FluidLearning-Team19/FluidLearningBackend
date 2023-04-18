@@ -19,7 +19,7 @@ public class Users {
     private String firstName;
 
     @Column(name = "lastname")
-    private String lastname;
+    private String lastName;
 
     @Column(name = "username")
     private String username;
@@ -39,9 +39,9 @@ public class Users {
     public Users() {
     }
 
-    public Users(String firstName, String lastname, String username, String password, String role, LocalDateTime dateOfBirth, LocalDateTime dateCreated) {
+    public Users(String firstName, String lastName, String username, String password, String role, LocalDateTime dateOfBirth, LocalDateTime dateCreated) {
         this.firstName = firstName;
-        this.lastname = lastname;
+        this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.role = role;
