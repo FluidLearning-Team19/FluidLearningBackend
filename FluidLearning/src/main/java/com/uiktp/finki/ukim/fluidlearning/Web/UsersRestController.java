@@ -1,9 +1,8 @@
 package com.uiktp.finki.ukim.fluidlearning.Web;
 
 
-import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Review;
-import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Users;
-import com.uiktp.finki.ukim.fluidlearning.Repository.ReviewRepository;
+import com.uiktp.finki.ukim.fluidlearning.Models.Entities.*;
+import com.uiktp.finki.ukim.fluidlearning.Repository.*;
 import com.uiktp.finki.ukim.fluidlearning.Service.UsersService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,13 +17,57 @@ import java.util.List;
 public class UsersRestController {
 
     private final UsersService usersService;
+    private final ExamRepository examRepository;
+    private final ExamQuestionRepository examQuestionRepository;
+    private final ExamAnswerRepository examAnswerRepository;
+    private final Exam_UserRepository exam_userRepository;
+    private final CertificateRepository certificateRepository;
+    private final LectureRepository lectureRepository;
 
-    public UsersRestController(UsersService usersService) {
+    public UsersRestController(UsersService usersService, ExamRepository examRepository, ExamQuestionRepository examQuestionRepository, ExamAnswerRepository examAnswerRepository, Exam_UserRepository exam_userRepository, CertificateRepository certificateRepository, LectureRepository lectureRepository) {
         this.usersService = usersService;
+        this.examRepository = examRepository;
+        this.examQuestionRepository = examQuestionRepository;
+        this.examAnswerRepository = examAnswerRepository;
+        this.exam_userRepository = exam_userRepository;
+        this.certificateRepository = certificateRepository;
+        this.lectureRepository = lectureRepository;
     }
 
     @GetMapping
     public List<Users> findAll() {
         return this.usersService.findAll();
     }
+
+    //*************TESTING REPOSITORIES**********
+    @GetMapping("/exam")
+    public List<Exam> findAllExamsTest() {
+        return this.examRepository.findAll();
+    }
+
+    @GetMapping("/examquestion")
+    public List<ExamQuestion> findAllExamQuestions() {
+        return this.examQuestionRepository.findAll();
+    }
+
+    @GetMapping("/examanswer")
+    public List<ExamAnswer> findAllExamAnswers() {
+        return this.examAnswerRepository.findAll();
+    }
+
+    @GetMapping("/examuser")
+    public List<Exam_User> findAllExamUsers() {
+        return this.exam_userRepository.findAll();
+    }
+
+    @GetMapping("/certificate")
+    public List<Certificate> findAllCertificates() {
+        return this.certificateRepository.findAll();
+    }
+
+    @GetMapping("/lecture")
+    public List<Lecture> findAllLectures() {
+        return this.lectureRepository.findAll();
+    }
+
 }
