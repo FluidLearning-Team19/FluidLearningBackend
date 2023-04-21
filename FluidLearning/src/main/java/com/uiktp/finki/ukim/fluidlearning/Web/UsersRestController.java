@@ -23,8 +23,12 @@ public class UsersRestController {
     private final Exam_UserRepository exam_userRepository;
     private final CertificateRepository certificateRepository;
     private final LectureRepository lectureRepository;
+    private final Course_UserRepository course_userRepository;
+    private final Lecture_UserRepository lecture_userRepository;
+    private final FavouriteCourseRepository favouriteCourseRepository;
+    private final ProgressRepository progressRepository;
 
-    public UsersRestController(UsersService usersService, ExamRepository examRepository, ExamQuestionRepository examQuestionRepository, ExamAnswerRepository examAnswerRepository, Exam_UserRepository exam_userRepository, CertificateRepository certificateRepository, LectureRepository lectureRepository) {
+    public UsersRestController(UsersService usersService, ExamRepository examRepository, ExamQuestionRepository examQuestionRepository, ExamAnswerRepository examAnswerRepository, Exam_UserRepository exam_userRepository, CertificateRepository certificateRepository, LectureRepository lectureRepository, Course_UserRepository course_userRepository, Lecture_UserRepository lecture_userRepository, FavouriteCourseRepository favouriteCourseRepository, ProgressRepository progressRepository) {
         this.usersService = usersService;
         this.examRepository = examRepository;
         this.examQuestionRepository = examQuestionRepository;
@@ -32,6 +36,10 @@ public class UsersRestController {
         this.exam_userRepository = exam_userRepository;
         this.certificateRepository = certificateRepository;
         this.lectureRepository = lectureRepository;
+        this.course_userRepository = course_userRepository;
+        this.lecture_userRepository = lecture_userRepository;
+        this.favouriteCourseRepository = favouriteCourseRepository;
+        this.progressRepository = progressRepository;
     }
 
     @GetMapping
@@ -68,6 +76,26 @@ public class UsersRestController {
     @GetMapping("/lecture")
     public List<Lecture> findAllLectures() {
         return this.lectureRepository.findAll();
+    }
+
+    @GetMapping("/courseuser")
+    public List<Course_User> findAllCourseUsers() {
+        return this.course_userRepository.findAll();
+    }
+
+    @GetMapping("/lectureuser")
+    public List<Lecture_User> findAllLectureUsers() {
+        return this.lecture_userRepository.findAll();
+    }
+
+    @GetMapping("/favouritecourse")
+    public List<FavouriteCourse> findAllFavouireCourses() {
+        return this.favouriteCourseRepository.findAll();
+    }
+
+    @GetMapping("/progress")
+    public List<Progress> findAllProgressForUserCourse() {
+        return this.progressRepository.findAll();
     }
 
 }
