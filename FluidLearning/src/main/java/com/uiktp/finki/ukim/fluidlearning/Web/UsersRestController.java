@@ -27,12 +27,8 @@ public class UsersRestController {
     private final Lecture_UserRepository lecture_userRepository;
     private final FavouriteCourseRepository favouriteCourseRepository;
     private final ProgressRepository progressRepository;
-    private final ForumRepository forumRepository;
-    private final ForumQuestionRepository forumQuestionRepository;
-    private final NoteRepository noteRepository;
-    private final ReplyRepository replyRepository;
 
-    public UsersRestController(UsersService usersService, ExamRepository examRepository, ExamQuestionRepository examQuestionRepository, ExamAnswerRepository examAnswerRepository, Exam_UserRepository exam_userRepository, CertificateRepository certificateRepository, LectureRepository lectureRepository, Course_UserRepository course_userRepository, Lecture_UserRepository lecture_userRepository, FavouriteCourseRepository favouriteCourseRepository, ProgressRepository progressRepository, ForumRepository forumRepository, ForumQuestionRepository forumQuestionRepository, NoteRepository noteRepository, ReplyRepository replyRepository) {
+    public UsersRestController(UsersService usersService, ExamRepository examRepository, ExamQuestionRepository examQuestionRepository, ExamAnswerRepository examAnswerRepository, Exam_UserRepository exam_userRepository, CertificateRepository certificateRepository, LectureRepository lectureRepository, Course_UserRepository course_userRepository, Lecture_UserRepository lecture_userRepository, FavouriteCourseRepository favouriteCourseRepository, ProgressRepository progressRepository) {
         this.usersService = usersService;
         this.examRepository = examRepository;
         this.examQuestionRepository = examQuestionRepository;
@@ -44,10 +40,6 @@ public class UsersRestController {
         this.lecture_userRepository = lecture_userRepository;
         this.favouriteCourseRepository = favouriteCourseRepository;
         this.progressRepository = progressRepository;
-        this.forumRepository = forumRepository;
-        this.forumQuestionRepository = forumQuestionRepository;
-        this.noteRepository = noteRepository;
-        this.replyRepository = replyRepository;
     }
 
     @GetMapping
@@ -105,26 +97,5 @@ public class UsersRestController {
     public List<Progress> findAllProgressForUserCourse() {
         return this.progressRepository.findAll();
     }
-
-    @GetMapping("/forum")
-    public List<Forum> findAllForum() {
-        return this.forumRepository.findAll();
-    }
-
-    @GetMapping("/forumquestion")
-    public List<ForumQuestion> findAllForumQuestion() {
-        return this.forumQuestionRepository.findAll();
-    }
-
-    @GetMapping("/note")
-    public List<Note> findAllNotes() {
-        return this.noteRepository.findAll();
-    }
-
-    @GetMapping("/replies")
-    public List<Reply> findAllReplies() {
-        return this.replyRepository.findAll();
-    }
-
 
 }
