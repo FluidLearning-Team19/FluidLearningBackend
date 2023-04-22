@@ -32,6 +32,7 @@ public class Course {
     @JoinColumn(name="categoryid", nullable=false)
     private Category category;
 
+
     public Course() {
     }
 
