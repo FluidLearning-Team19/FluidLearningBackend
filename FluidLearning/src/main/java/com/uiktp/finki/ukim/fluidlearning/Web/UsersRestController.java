@@ -27,8 +27,9 @@ public class UsersRestController {
     private final Lecture_UserRepository lecture_userRepository;
     private final FavouriteCourseRepository favouriteCourseRepository;
     private final ProgressRepository progressRepository;
+    private final RecommendationCourseRepository recommendationCourseRepository;
 
-    public UsersRestController(UsersService usersService, ExamRepository examRepository, ExamQuestionRepository examQuestionRepository, ExamAnswerRepository examAnswerRepository, Exam_UserRepository exam_userRepository, CertificateRepository certificateRepository, LectureRepository lectureRepository, Course_UserRepository course_userRepository, Lecture_UserRepository lecture_userRepository, FavouriteCourseRepository favouriteCourseRepository, ProgressRepository progressRepository) {
+    public UsersRestController(UsersService usersService, ExamRepository examRepository, ExamQuestionRepository examQuestionRepository, ExamAnswerRepository examAnswerRepository, Exam_UserRepository exam_userRepository, CertificateRepository certificateRepository, LectureRepository lectureRepository, Course_UserRepository course_userRepository, Lecture_UserRepository lecture_userRepository, FavouriteCourseRepository favouriteCourseRepository, ProgressRepository progressRepository, RecommendationCourseRepository recommendationCourseRepository) {
         this.usersService = usersService;
         this.examRepository = examRepository;
         this.examQuestionRepository = examQuestionRepository;
@@ -40,6 +41,7 @@ public class UsersRestController {
         this.lecture_userRepository = lecture_userRepository;
         this.favouriteCourseRepository = favouriteCourseRepository;
         this.progressRepository = progressRepository;
+        this.recommendationCourseRepository = recommendationCourseRepository;
     }
 
     @GetMapping
@@ -96,6 +98,11 @@ public class UsersRestController {
     @GetMapping("/progress")
     public List<Progress> findAllProgressForUserCourse() {
         return this.progressRepository.findAll();
+    }
+
+    @GetMapping("/recommendation")
+    public List<RecommendationCourse> findAllRecommendationCourses() {
+        return this.recommendationCourseRepository.findAll();
     }
 
 }
