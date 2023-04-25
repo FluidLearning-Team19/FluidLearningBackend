@@ -3,15 +3,15 @@ package com.uiktp.finki.ukim.fluidlearning.Models.dto;
 import lombok.Data;
 
 @Data
-public class CourseDto {
+public class LectureDto {
 
-    private String code;
+    private Integer ordinalNumber;
 
     private String title;
 
     private String description;
 
-    private int numberOfLectures;
+    private String contentMaterials;
 
-    private CategoryDto category;
+    private CourseDto course;
 }

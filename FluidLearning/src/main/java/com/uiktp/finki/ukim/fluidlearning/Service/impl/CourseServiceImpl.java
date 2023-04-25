@@ -36,7 +36,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public CourseDto save(CourseDto courseDto) {
         //TODO check if it already exists
-        Category category = this.categoryRepository.findCategoryByName(courseDto.getCategoryName());
+        Category category = this.categoryRepository.findCategoryByName(courseDto.getCategory().getName());
         Course course = new Course(courseDto.getCode(), courseDto.getTitle(),
                 courseDto.getDescription(),
                 courseDto.getNumberOfLectures(), category);
@@ -48,7 +48,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public CourseDto edit(Integer id, CourseDto courseDto) {
-        Category category = this.categoryRepository.findCategoryByName(courseDto.getCategoryName());
+        Category category = this.categoryRepository.findCategoryByName(courseDto.getCategory().getName());
 
         Course course = findById(id).orElseThrow(NoSuchElementException::new);
         course.setCode(courseDto.getCode());
