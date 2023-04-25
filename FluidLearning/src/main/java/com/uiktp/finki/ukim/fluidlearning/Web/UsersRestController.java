@@ -2,6 +2,7 @@ package com.uiktp.finki.ukim.fluidlearning.Web;
 
 
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.*;
+import com.uiktp.finki.ukim.fluidlearning.Models.dto.CourseDto;
 import com.uiktp.finki.ukim.fluidlearning.Repository.*;
 import com.uiktp.finki.ukim.fluidlearning.Service.UsersService;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -103,6 +104,11 @@ public class UsersRestController {
     @GetMapping("/recommendation")
     public List<RecommendationCourse> findAllRecommendationCourses() {
         return this.recommendationCourseRepository.findAll();
+    }
+
+    @GetMapping("/userCourses")
+    public List<CourseDto> findAllUserCourses() {
+        return this.course_userRepository.findAllCoursesForUser(1);
     }
 
 }
