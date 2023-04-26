@@ -1,7 +1,6 @@
 package com.uiktp.finki.ukim.fluidlearning.Service.impl;
 
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Users;
-import com.uiktp.finki.ukim.fluidlearning.Models.Exceptions.FluidNotFoundException;
 import com.uiktp.finki.ukim.fluidlearning.Repository.UsersRepository;
 import com.uiktp.finki.ukim.fluidlearning.Service.UsersService;
 import org.springframework.stereotype.Service;
@@ -50,5 +49,10 @@ public class UsersServiceImpl implements UsersService {
         Users userToDelete = this.userRepository.findById(userId).orElseThrow(() -> new FluidNotFoundException("Could not find User with id:" + userId));
 
         this.userRepository.delete(userToDelete);
+    }
+
+    @Override
+    public Users findByUsername(String username) {
+        return this.userRepository.findByUsername(username);
     }
 }
