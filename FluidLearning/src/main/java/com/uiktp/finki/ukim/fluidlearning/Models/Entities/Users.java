@@ -3,7 +3,10 @@ package com.uiktp.finki.ukim.fluidlearning.Models.Entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Getter
@@ -36,10 +39,13 @@ public class Users {
     @Column(name = "datecreated")
     private LocalDateTime dateCreated;
 
+    @Column(name = "enabled")
+    private Integer enabled;
+
     public Users() {
     }
 
-    public Users(String firstName, String lastName, String username, String password, String role, LocalDateTime dateOfBirth, LocalDateTime dateCreated) {
+    public Users(String firstName, String lastName, String username, String password, String role, LocalDateTime dateOfBirth, LocalDateTime dateCreated, Integer enabled) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -47,5 +53,6 @@ public class Users {
         this.role = role;
         this.dateOfBirth = dateOfBirth;
         this.dateCreated = dateCreated;
+        this.enabled = enabled;
     }
 }

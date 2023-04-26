@@ -6,6 +6,7 @@ import com.uiktp.finki.ukim.fluidlearning.Service.UsersService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsersServiceImpl implements UsersService {
@@ -19,5 +20,10 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public List<Users> findAll() {
         return this.userRepository.findAll();
+    }
+
+    @Override
+    public Users findByUsername(String username) {
+        return this.userRepository.findByUsername(username);
     }
 }
