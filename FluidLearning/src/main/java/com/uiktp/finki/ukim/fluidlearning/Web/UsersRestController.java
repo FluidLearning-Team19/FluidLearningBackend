@@ -1,8 +1,7 @@
 package com.uiktp.finki.ukim.fluidlearning.Web;
 
 
-import com.uiktp.finki.ukim.fluidlearning.Models.Entities.*;
-import com.uiktp.finki.ukim.fluidlearning.Models.dto.CourseDto;
+import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Users;
 import com.uiktp.finki.ukim.fluidlearning.Repository.*;
 import com.uiktp.finki.ukim.fluidlearning.Service.UsersService;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -50,65 +49,6 @@ public class UsersRestController {
         return this.usersService.findAll();
     }
 
-    //*************TESTING REPOSITORIES**********
-    @GetMapping("/exam")
-    public List<Exam> findAllExamsTest() {
-        return this.examRepository.findAll();
-    }
 
-    @GetMapping("/examquestion")
-    public List<ExamQuestion> findAllExamQuestions() {
-        return this.examQuestionRepository.findAll();
-    }
-
-    @GetMapping("/examanswer")
-    public List<ExamAnswer> findAllExamAnswers() {
-        return this.examAnswerRepository.findAll();
-    }
-
-    @GetMapping("/examuser")
-    public List<Exam_User> findAllExamUsers() {
-        return this.exam_userRepository.findAll();
-    }
-
-    @GetMapping("/certificate")
-    public List<Certificate> findAllCertificates() {
-        return this.certificateRepository.findAll();
-    }
-
-    @GetMapping("/lecture")
-    public List<Lecture> findAllLectures() {
-        return this.lectureRepository.findAll();
-    }
-
-    @GetMapping("/courseuser")
-    public List<Course_User> findAllCourseUsers() {
-        return this.course_userRepository.findAll();
-    }
-
-    @GetMapping("/lectureuser")
-    public List<Lecture_User> findAllLectureUsers() {
-        return this.lecture_userRepository.findAll();
-    }
-
-    @GetMapping("/favouritecourse")
-    public List<FavouriteCourse> findAllFavouireCourses() {
-        return this.favouriteCourseRepository.findAll();
-    }
-
-    @GetMapping("/progress")
-    public List<Progress> findAllProgressForUserCourse() {
-        return this.progressRepository.findAll();
-    }
-
-    @GetMapping("/recommendation")
-    public List<RecommendationCourse> findAllRecommendationCourses() {
-        return this.recommendationCourseRepository.findAll();
-    }
-
-    @GetMapping("/userCourses")
-    public List<CourseDto> findAllUserCourses() {
-        return this.course_userRepository.findAllCoursesForUser(1);
-    }
 
 }

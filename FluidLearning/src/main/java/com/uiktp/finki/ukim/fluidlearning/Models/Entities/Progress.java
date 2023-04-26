@@ -23,7 +23,7 @@ public class Progress {
     private String status;
 
     @ManyToOne
-    @JoinColumn(name="courseUserId", nullable=false)
+    @JoinColumn(name="course_user_id", nullable=false)
     private Course_User course_user;
 
 }
