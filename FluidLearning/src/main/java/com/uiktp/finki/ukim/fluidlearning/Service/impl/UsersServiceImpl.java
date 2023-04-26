@@ -1,6 +1,7 @@
 package com.uiktp.finki.ukim.fluidlearning.Service.impl;
 
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Users;
+import com.uiktp.finki.ukim.fluidlearning.Models.Exceptions.FluidNotFoundException;
 import com.uiktp.finki.ukim.fluidlearning.Repository.UsersRepository;
 import com.uiktp.finki.ukim.fluidlearning.Service.UsersService;
 import org.springframework.stereotype.Service;
