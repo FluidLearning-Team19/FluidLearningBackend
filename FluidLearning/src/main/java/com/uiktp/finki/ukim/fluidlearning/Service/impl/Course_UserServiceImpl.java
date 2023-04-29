@@ -1,7 +1,7 @@
 package com.uiktp.finki.ukim.fluidlearning.Service.impl;
 
+import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Course;
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Course_User;
-import com.uiktp.finki.ukim.fluidlearning.Models.dto.CourseDto;
 import com.uiktp.finki.ukim.fluidlearning.Repository.Course_UserRepository;
 import com.uiktp.finki.ukim.fluidlearning.Service.Course_UserService;
 import org.springframework.stereotype.Service;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class Course_UserServiceImpl implements Course_UserService {
@@ -43,7 +44,8 @@ public class Course_UserServiceImpl implements Course_UserService {
     }
 
     @Override
-    public List<CourseDto> findAllCoursesForUser(Integer userId) {
-        return this.course_userRepository.findAllCoursesForUser(userId);
+    public List<Course> findAllCoursesForUser(Integer userId) {
+        return this.course_userRepository.findAll().stream()
+                .filter(s -> s.getUser().getId() == userId).map(Course_User::getCourse).collect(Collectors.toList());
     }
 }
