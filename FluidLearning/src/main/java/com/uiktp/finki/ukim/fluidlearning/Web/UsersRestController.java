@@ -6,6 +6,7 @@ import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Users;
 import com.uiktp.finki.ukim.fluidlearning.Models.dto.CourseDto;
 import com.uiktp.finki.ukim.fluidlearning.Models.dto.UsersDto;
 import com.uiktp.finki.ukim.fluidlearning.Service.Course_UserService;
+import com.uiktp.finki.ukim.fluidlearning.Service.FavouriteCourseService;
 import com.uiktp.finki.ukim.fluidlearning.Service.UsersService;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -25,10 +26,13 @@ public class UsersRestController {
 
     private final Course_UserService course_userService;
 
-    public UsersRestController(ModelMapper modelMapper, UsersService usersService, Course_UserService course_userService) {
+    private final FavouriteCourseService favouriteCourseService;
+
+    public UsersRestController(ModelMapper modelMapper, UsersService usersService, Course_UserService course_userService, FavouriteCourseService favouriteCourseService) {
         this.modelMapper = modelMapper;
         this.usersService = usersService;
         this.course_userService = course_userService;
+        this.favouriteCourseService = favouriteCourseService;
     }
 
     @GetMapping
@@ -95,4 +99,12 @@ public class UsersRestController {
         this.usersService.deleteUser(id);
         return new ResponseEntity<>("User Deleted", HttpStatus.OK);
     }
+
+    @GetMapping("/{id}/favouriteCourses")
+    public ResponseEntity<List<CourseDto>> getFavouriteCoursesByUserId(@PathVariable Integer id) {
+        List<CourseDto> favouriteCoursesForUser =  this.favouriteCourseService.findAllFavouriteCoursesForUser(id);
+
+        return ResponseEntity.ok().body(favouriteCoursesForUser);
+    }
+
 }
