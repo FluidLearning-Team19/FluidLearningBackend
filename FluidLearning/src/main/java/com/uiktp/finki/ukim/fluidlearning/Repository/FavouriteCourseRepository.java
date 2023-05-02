@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface FavouriteCourseRepository extends JpaRepository<FavouriteCourse, Integer> {
 
-    @Query("SELECT new com.uiktp.finki.ukim.fluidlearning.Models.dto.CourseDto(a.course.code, a.course.title, a.course.description, a.course.numberOfLectures, a.course.category.name) FROM FavouriteCourse a WHERE a.user.id = :userId")
+    @Query("SELECT new com.uiktp.finki.ukim.fluidlearning.Models.dto.CourseDto(a.course.code, a.course.title, a.course.description, a.course.numberOfLectures, a.course.category.name, a.course.category.description) FROM FavouriteCourse a WHERE a.user.id = :userId")
     List<CourseDto> findAllFavouriteCoursesForUser(Integer userId);
 }
