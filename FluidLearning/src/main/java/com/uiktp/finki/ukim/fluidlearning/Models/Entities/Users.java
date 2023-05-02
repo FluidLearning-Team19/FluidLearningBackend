@@ -1,6 +1,8 @@
 package com.uiktp.finki.ukim.fluidlearning.Models.Entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +29,8 @@ public class Users {
     @Column(name = "username")
     private String username;
 
+    @NotNull
+    @NotEmpty
     @Column(name = "password")
     private String password;
 

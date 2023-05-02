@@ -4,17 +4,22 @@ import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Users;
 import com.uiktp.finki.ukim.fluidlearning.Models.Exceptions.FluidNotFoundException;
 import com.uiktp.finki.ukim.fluidlearning.Repository.UsersRepository;
 import com.uiktp.finki.ukim.fluidlearning.Service.UsersService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class UsersServiceImpl implements UsersService {
 
     private final UsersRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UsersServiceImpl(UsersRepository userRepository) {
+
+    public UsersServiceImpl(UsersRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -29,7 +34,16 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public Users createUser(Users user) {
-        return this.userRepository.save(user);
+        Users newUser = new Users();
+        newUser.setUsername(user.getUsername());
+        newUser.setFirstName(user.getFirstName());
+        newUser.setLastName(user.getLastName());
+        newUser.setEnabled(1);
+        newUser.setDateOfBirth(user.getDateOfBirth());
+        newUser.setDateCreated(LocalDateTime.now());
+        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        newUser.setRole(user.getRole());
+        return this.userRepository.save(newUser);
     }
 
     @Override
@@ -37,7 +51,9 @@ public class UsersServiceImpl implements UsersService {
         Users userToUpdate = this.userRepository.findById(userId).orElseThrow(() -> new FluidNotFoundException("Could not find User with id:" + userId));
 
         userToUpdate.setRole(user.getRole());
-        userToUpdate.setPassword(user.getPassword());
+        if(user.getPassword() != null && !user.getPassword().isEmpty()) {
+            userToUpdate.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         userToUpdate.setUsername(user.getUsername());
         userToUpdate.setLastName(user.getLastName());
         userToUpdate.setFirstName(user.getFirstName());
