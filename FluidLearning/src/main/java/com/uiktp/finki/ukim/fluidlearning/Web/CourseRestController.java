@@ -29,7 +29,8 @@ public class CourseRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Course> findById(@PathVariable Integer id) {
-        return this.courseService.findById(id).map(course -> ResponseEntity.ok().body(course)).orElseGet(() -> ResponseEntity.badRequest().build());
+        return this.courseService.findById(id)
+                .map(course -> ResponseEntity.ok().body(course)).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
     @PostMapping("/add")

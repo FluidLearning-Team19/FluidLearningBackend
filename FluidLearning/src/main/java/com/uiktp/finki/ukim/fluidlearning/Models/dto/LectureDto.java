@@ -13,5 +13,7 @@ public class LectureDto {
 
     private String contentMaterials;
 
+    private int minutesDuration;
+
     private CourseDto course;
 }

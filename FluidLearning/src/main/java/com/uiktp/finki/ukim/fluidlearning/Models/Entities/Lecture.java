@@ -1,5 +1,6 @@
 package com.uiktp.finki.ukim.fluidlearning.Models.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +26,10 @@ public class Lecture {
     @Column(name = "contentmaterials")
     private String contentMaterials;
 
+    @Column(name = "minutesduration")
+    private int minutesDuration;
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="courseid", nullable=false)
     private Course course;
@@ -32,11 +37,12 @@ public class Lecture {
     public Lecture() {
     }
 
-    public Lecture(Integer ordinalNumber, String title, String description, String contentMaterials, Course course) {
+    public Lecture(Integer ordinalNumber, String title, String description, String contentMaterials, int minutesDuration, Course course) {
         this.ordinalNumber = ordinalNumber;
         this.title = title;
         this.description = description;
         this.contentMaterials = contentMaterials;
+        this.minutesDuration = minutesDuration;
         this.course = course;
     }
 }

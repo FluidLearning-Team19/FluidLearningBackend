@@ -3,8 +3,7 @@ package com.uiktp.finki.ukim.fluidlearning.Models.Entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -31,6 +30,9 @@ public class Course {
     @ManyToOne
     @JoinColumn(name="categoryid", nullable=false)
     private Category category;
+
+    @OneToMany(mappedBy = "course")
+    List<Lecture> lectures;
 
     public Course() {
     }
