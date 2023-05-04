@@ -23,5 +23,12 @@ public class ExamAnswer {
     @JoinColumn(name="examquestionid", nullable=false)
     private ExamQuestion examQuestion;
 
+    public ExamAnswer() {
+    }
 
+    public ExamAnswer(String content, Integer isRightAnswer, ExamQuestion examQuestion) {
+        this.content = content;
+        this.isRightAnswer = isRightAnswer;
+        this.examQuestion = examQuestion;
+    }
 }
