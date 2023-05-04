@@ -11,6 +11,7 @@ import java.util.List;
 @RequestMapping("/api/examQuestion")
 @CrossOrigin(value = "*")
 public class ExamQuestionController {
+
     private final ExamQuestionService examQuestionService;
 
     public ExamQuestionController(ExamQuestionService examQuestionService) {

@@ -3,6 +3,7 @@ package com.uiktp.finki.ukim.fluidlearning.Service.impl;
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.ExamAnswer;
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.ExamQuestion;
 import com.uiktp.finki.ukim.fluidlearning.Models.Exceptions.ExamAnswerNotFound;
+import com.uiktp.finki.ukim.fluidlearning.Models.dto.ExamAnswerDto;
 import com.uiktp.finki.ukim.fluidlearning.Repository.ExamAnswerRepository;
 import com.uiktp.finki.ukim.fluidlearning.Service.ExamAnswerService;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,16 @@ public class ExamAnswerServiceImpl implements ExamAnswerService {
     }
 
     @Override
+    public Optional<ExamAnswer> save(ExamAnswerDto examAnswerDto) {
+        ExamAnswer examAnswer = new ExamAnswer();
+        examAnswer.setContent(examAnswerDto.getContent());
+        examAnswer.setIsRightAnswer(examAnswerDto.getIsRightAnswer());
+        examAnswer.setExamQuestion(examAnswerDto.getExamQuestion());
+
+        return Optional.of(this.examAnswerRepository.save(examAnswer));
+    }
+
+    @Override
     public Optional<ExamAnswer> edit(Integer id, String content, Integer isRightAnswer, ExamQuestion examQuestion) {
         ExamAnswer examAnswer = this.findById(id).orElseThrow(() -> new ExamAnswerNotFound(id));
         examAnswer.setContent(content);
@@ -44,6 +55,17 @@ public class ExamAnswerServiceImpl implements ExamAnswerService {
         examAnswer.setExamQuestion(examQuestion);
 
         return Optional.of(this.examAnswerRepository.save(examAnswer));
+    }
+
+    @Override
+    public Optional<ExamAnswer> edit(Integer id, ExamAnswerDto examAnswerDto) {
+        ExamAnswer examAnswer = this.examAnswerRepository.findById(id).orElseThrow(
+                () -> new ExamAnswerNotFound(id));
+        examAnswer.setContent(examAnswerDto.getContent());
+        examAnswer.setIsRightAnswer(examAnswerDto.getIsRightAnswer());
+        examAnswer.setExamQuestion(examAnswerDto.getExamQuestion());
+
+        return Optional.of(examAnswerRepository.save(examAnswer));
     }
 
     @Override
