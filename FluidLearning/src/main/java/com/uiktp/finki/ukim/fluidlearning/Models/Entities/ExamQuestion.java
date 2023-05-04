@@ -31,4 +31,9 @@ public class ExamQuestion {
         this.points = points;
         this.exam = exam;
     }
+
+    public ExamQuestion(String content, Integer points) {
+        this.content = content;
+        this.points = points;
+    }
 }
