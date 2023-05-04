@@ -1,6 +1,5 @@
 package com.uiktp.finki.ukim.fluidlearning.Service;
 
-import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Forum;
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.ForumQuestion;
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Reply;
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Users;
@@ -24,4 +23,6 @@ public interface ReplyService {
     Optional<Reply> edit(Integer id, ReplyDto replyDto);
 
     void deleteById(Integer id);
+
+    List<ReplyDto> getAllRepliesForQuestion(Integer questionId);
 }

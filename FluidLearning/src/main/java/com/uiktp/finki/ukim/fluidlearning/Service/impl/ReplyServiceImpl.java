@@ -80,4 +80,9 @@ public class ReplyServiceImpl implements ReplyService {
     public void deleteById(Integer id) {
         this.replyRepository.deleteById(id);
     }
+
+    @Override
+    public List<ReplyDto> getAllRepliesForQuestion(Integer questionId) {
+        return this.replyRepository.getReplyByForumQuestionId(questionId);
+    }
 }

@@ -14,7 +14,6 @@ public class ReviewDto {
     public ReviewDto() {
     }
 
-
     public ReviewDto(String comment, Double rating, LocalDateTime datePosted) {
         this.comment = comment;
         this.rating = rating;

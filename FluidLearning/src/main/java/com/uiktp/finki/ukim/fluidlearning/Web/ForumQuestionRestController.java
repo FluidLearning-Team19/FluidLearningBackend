@@ -1,11 +1,12 @@
 package com.uiktp.finki.ukim.fluidlearning.Web;
 
 
-import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Forum;
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.ForumQuestion;
-import com.uiktp.finki.ukim.fluidlearning.Models.dto.ForumDto;
+import com.uiktp.finki.ukim.fluidlearning.Models.dto.CourseDto;
 import com.uiktp.finki.ukim.fluidlearning.Models.dto.ForumQuestionDto;
+import com.uiktp.finki.ukim.fluidlearning.Models.dto.ReplyDto;
 import com.uiktp.finki.ukim.fluidlearning.Service.ForumQuestionService;
+import com.uiktp.finki.ukim.fluidlearning.Service.ReplyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,9 +17,12 @@ import java.util.List;
 @CrossOrigin(value = "*")
 public class ForumQuestionRestController {
     private final ForumQuestionService forumQuestionService;
+    private final ReplyService replyService;
 
-    public ForumQuestionRestController(ForumQuestionService forumQuestionService) {
+
+    public ForumQuestionRestController(ForumQuestionService forumQuestionService, ReplyService replyService) {
         this.forumQuestionService = forumQuestionService;
+        this.replyService = replyService;
     }
 
     @GetMapping
@@ -54,4 +58,13 @@ public class ForumQuestionRestController {
             return ResponseEntity.ok().build();
         return ResponseEntity.badRequest().build();
     }
+
+    @GetMapping("/{id}/replies")
+    public ResponseEntity<List<ReplyDto>> getAllRepliesForQuestion(@PathVariable Integer id){
+        List<ReplyDto> repliesForQuestion =  this.replyService.getAllRepliesForQuestion(id);
+        return ResponseEntity.ok().body(repliesForQuestion);
+    }
+
+
+
 }
