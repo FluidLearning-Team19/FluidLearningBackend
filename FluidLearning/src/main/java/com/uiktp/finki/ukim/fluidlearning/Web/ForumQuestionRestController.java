@@ -1,9 +1,6 @@
 package com.uiktp.finki.ukim.fluidlearning.Web;
 
-
-import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Forum;
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.ForumQuestion;
-import com.uiktp.finki.ukim.fluidlearning.Models.dto.ForumDto;
 import com.uiktp.finki.ukim.fluidlearning.Models.dto.ForumQuestionDto;
 import com.uiktp.finki.ukim.fluidlearning.Service.ForumQuestionService;
 import org.springframework.http.ResponseEntity;

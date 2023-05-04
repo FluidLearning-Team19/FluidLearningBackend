@@ -3,6 +3,7 @@ package com.uiktp.finki.ukim.fluidlearning.Service.impl;
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Exam;
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.ExamQuestion;
 import com.uiktp.finki.ukim.fluidlearning.Models.Exceptions.ExamQuestionNotFound;
+import com.uiktp.finki.ukim.fluidlearning.Models.dto.ExamQuestionDto;
 import com.uiktp.finki.ukim.fluidlearning.Repository.ExamQuestionRepository;
 import com.uiktp.finki.ukim.fluidlearning.Service.ExamQuestionService;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,16 @@ public class ExamQuestionServiceImpl implements ExamQuestionService {
     }
 
     @Override
+    public Optional<ExamQuestion> save(ExamQuestionDto examQuestionDto) {
+        ExamQuestion examQuestion = new ExamQuestion();
+        examQuestion.setContent(examQuestionDto.getContent());
+        examQuestion.setPoints(examQuestionDto.getPoints());
+        examQuestion.setExam(examQuestionDto.getExam());
+
+        return Optional.of(this.examQuestionRepository.save(examQuestion));
+    }
+
+    @Override
     public Optional<ExamQuestion> edit(Integer id, String content, int points, Exam exam) {
         ExamQuestion examQuestion = this.findById(id).orElseThrow(() -> new ExamQuestionNotFound(id));
         examQuestion.setContent(content);
@@ -44,6 +55,17 @@ public class ExamQuestionServiceImpl implements ExamQuestionService {
         examQuestion.setExam(exam);
 
         return Optional.of(this.examQuestionRepository.save(examQuestion));
+    }
+
+    @Override
+    public Optional<ExamQuestion> edit(Integer id, ExamQuestionDto examQuestionDto) {
+        ExamQuestion examQuestion = this.examQuestionRepository.findById(id).orElseThrow(
+                () -> new ExamQuestionNotFound(id));
+        examQuestion.setContent(examQuestionDto.getContent());
+        examQuestion.setPoints(examQuestionDto.getPoints());
+        examQuestion.setExam(examQuestionDto.getExam());
+
+        return Optional.of(examQuestionRepository.save(examQuestion));
     }
 
     @Override
