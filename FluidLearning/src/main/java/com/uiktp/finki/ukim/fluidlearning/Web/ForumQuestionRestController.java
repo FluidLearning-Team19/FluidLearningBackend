@@ -2,7 +2,9 @@ package com.uiktp.finki.ukim.fluidlearning.Web;
 
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.ForumQuestion;
 import com.uiktp.finki.ukim.fluidlearning.Models.dto.ForumQuestionDto;
+import com.uiktp.finki.ukim.fluidlearning.Models.dto.ReplyDto;
 import com.uiktp.finki.ukim.fluidlearning.Service.ForumQuestionService;
+import com.uiktp.finki.ukim.fluidlearning.Service.ReplyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
