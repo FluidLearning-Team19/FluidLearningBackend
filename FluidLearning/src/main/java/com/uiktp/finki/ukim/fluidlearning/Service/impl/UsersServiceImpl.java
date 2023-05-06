@@ -4,6 +4,8 @@ import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Users;
 import com.uiktp.finki.ukim.fluidlearning.Models.Exceptions.FluidNotFoundException;
 import com.uiktp.finki.ukim.fluidlearning.Repository.UsersRepository;
 import com.uiktp.finki.ukim.fluidlearning.Service.UsersService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -72,4 +74,13 @@ public class UsersServiceImpl implements UsersService {
     public Users findByUsername(String username) {
         return this.userRepository.findByUsername(username);
     }
+
+    @Override
+    public Users findAuthenticatedUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        return findByUsername((String) auth.getPrincipal());
+    }
+
+
 }

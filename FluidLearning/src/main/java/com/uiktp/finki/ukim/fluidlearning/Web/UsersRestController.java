@@ -1,11 +1,12 @@
 package com.uiktp.finki.ukim.fluidlearning.Web;
 
-
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Course;
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Users;
 import com.uiktp.finki.ukim.fluidlearning.Models.dto.CourseDto;
+import com.uiktp.finki.ukim.fluidlearning.Models.dto.Exam_UserDto;
 import com.uiktp.finki.ukim.fluidlearning.Models.dto.UsersDto;
 import com.uiktp.finki.ukim.fluidlearning.Service.Course_UserService;
+import com.uiktp.finki.ukim.fluidlearning.Service.Exam_UserService;
 import com.uiktp.finki.ukim.fluidlearning.Service.FavouriteCourseService;
 import com.uiktp.finki.ukim.fluidlearning.Service.UsersService;
 import org.modelmapper.ModelMapper;
@@ -28,11 +29,14 @@ public class UsersRestController {
 
     private final FavouriteCourseService favouriteCourseService;
 
-    public UsersRestController(ModelMapper modelMapper, UsersService usersService, Course_UserService course_userService, FavouriteCourseService favouriteCourseService) {
+    private final Exam_UserService exam_userService;
+
+    public UsersRestController(ModelMapper modelMapper, UsersService usersService, Course_UserService course_userService, FavouriteCourseService favouriteCourseService, Exam_UserService exam_userService) {
         this.modelMapper = modelMapper;
         this.usersService = usersService;
         this.course_userService = course_userService;
         this.favouriteCourseService = favouriteCourseService;
+        this.exam_userService = exam_userService;
     }
 
     @GetMapping
@@ -107,4 +111,10 @@ public class UsersRestController {
         return ResponseEntity.ok().body(favouriteCoursesForUser);
     }
 
+    @PostMapping("/exam/{examId}")
+    public ResponseEntity createExam_User(@PathVariable int examId, @RequestBody Exam_UserDto exam_userDto) {
+        exam_userService.create(examId, exam_userDto);
+
+        return ResponseEntity.ok().build();
+    }
 }

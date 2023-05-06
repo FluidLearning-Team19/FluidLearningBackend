@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ExamAnswerRepository extends JpaRepository<ExamAnswer, Integer> {
+
+    ExamAnswer findByExamQuestion_Id(Integer id);
 }

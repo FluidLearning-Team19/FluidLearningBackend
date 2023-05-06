@@ -1,10 +1,8 @@
 package com.uiktp.finki.ukim.fluidlearning.Models.Entities;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.catalina.User;
 
 import java.time.LocalDateTime;
 
@@ -39,5 +37,12 @@ public class Exam_User {
         this.user = user;
         this.totalScore = totalScore;
         this.dateCompleted = dateCompleted;
+    }
+
+    public Exam_User(Exam exam, Users user, Integer totalScore){
+        this.exam = exam;
+        this.user = user;
+        this.totalScore = totalScore;
+        this.dateCompleted = LocalDateTime.now();
     }
 }

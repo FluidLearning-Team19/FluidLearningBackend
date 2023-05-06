@@ -2,13 +2,14 @@ package com.uiktp.finki.ukim.fluidlearning.Web;
 
 
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Course;
+import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Exam;
 import com.uiktp.finki.ukim.fluidlearning.Models.dto.CourseDto;
 import com.uiktp.finki.ukim.fluidlearning.Service.CourseService;
+import com.uiktp.finki.ukim.fluidlearning.Service.Course_UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/api/course")
@@ -16,9 +17,11 @@ import java.util.List;
 public class CourseRestController {
 
     private final CourseService courseService;
+    private final Course_UserService course_userService;
 
-    public CourseRestController(CourseService courseService) {
+    public CourseRestController(CourseService courseService, Course_UserService course_userService) {
         this.courseService = courseService;
+        this.course_userService = course_userService;
     }
 
     @GetMapping
@@ -53,5 +56,9 @@ public class CourseRestController {
         return ResponseEntity.badRequest().build();
     }
 
+    @GetMapping("/exams/{courseUserId}")
+    public ResponseEntity<List<Exam>> getAllExamsForCourse(@PathVariable Integer courseUserId) {
+        return ResponseEntity.ok(course_userService.getAllExamsByCourseUserId(courseUserId));
+    }
 
 }

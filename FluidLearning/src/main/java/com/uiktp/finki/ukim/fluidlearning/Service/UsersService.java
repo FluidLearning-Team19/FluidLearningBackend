@@ -16,4 +16,6 @@ public interface UsersService {
     void deleteUser(int userId);
 
     Users findByUsername(String username);
+
+    Users findAuthenticatedUser();
 }
