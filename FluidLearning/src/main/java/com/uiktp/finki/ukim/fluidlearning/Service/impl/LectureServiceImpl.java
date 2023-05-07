@@ -10,6 +10,9 @@ import com.uiktp.finki.ukim.fluidlearning.Repository.LectureRepository;
 import com.uiktp.finki.ukim.fluidlearning.Service.LectureService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class LectureServiceImpl implements LectureService {
 
@@ -26,6 +29,12 @@ public class LectureServiceImpl implements LectureService {
     @Override
     public Lecture getLectureById(int lectureId) {
         return lectureRepository.findById(lectureId).orElseThrow(() -> new FluidNotFoundException("Could not find a Lecture with this id: " + lectureId));
+    }
+
+    @Override
+    public List<Lecture> getAllLecturesByCourseId(int courseId)
+    {
+        return lectureRepository.findAll().stream().filter(s -> s.getCourse().getId() == courseId).collect(Collectors.toList());
     }
 
     @Override

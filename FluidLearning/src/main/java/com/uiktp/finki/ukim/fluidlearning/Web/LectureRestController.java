@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/lecture")
 @CrossOrigin(value = "*")
@@ -29,6 +31,17 @@ public class LectureRestController {
         LectureDto lectureDto = modelMapper.map(lecture, LectureDto.class);
 
         return ResponseEntity.ok().body(lectureDto);
+    }
+
+    @GetMapping("/course/{id}")
+    public ResponseEntity<List<LectureDto>> getLectureByCourseId(@PathVariable Integer id) {
+        List<Lecture> lectures = this.lectureService.getAllLecturesByCourseId(id);
+
+        List<LectureDto> lectureDtos = lectures.stream()
+                .map(s -> modelMapper.map(s, LectureDto.class))
+                .toList();
+
+        return ResponseEntity.ok().body(lectureDtos);
     }
 
     @PostMapping
