@@ -121,7 +121,7 @@ public class UsersRestController {
     }
 
     @PostMapping("/addFavouriteCourse")
-    public ResponseEntity<FavouriteCourse> createExam_User(@RequestBody FavouriteCourseDto favouriteCourseDto) {
+    public ResponseEntity<FavouriteCourse> addFavouriteCourseForUser(@RequestBody FavouriteCourseDto favouriteCourseDto) {
         FavouriteCourse favouriteCourse = favouriteCourseService.save(favouriteCourseDto);
         return ResponseEntity.ok().body(favouriteCourse);
     }
