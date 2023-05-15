@@ -1,9 +1,11 @@
 package com.uiktp.finki.ukim.fluidlearning.Web;
 
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Course;
+import com.uiktp.finki.ukim.fluidlearning.Models.Entities.FavouriteCourse;
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Users;
 import com.uiktp.finki.ukim.fluidlearning.Models.dto.CourseDto;
 import com.uiktp.finki.ukim.fluidlearning.Models.dto.Exam_UserDto;
+import com.uiktp.finki.ukim.fluidlearning.Models.dto.FavouriteCourseDto;
 import com.uiktp.finki.ukim.fluidlearning.Models.dto.UsersDto;
 import com.uiktp.finki.ukim.fluidlearning.Service.Course_UserService;
 import com.uiktp.finki.ukim.fluidlearning.Service.Exam_UserService;
@@ -116,5 +118,11 @@ public class UsersRestController {
         exam_userService.create(examId, exam_userDto);
 
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/addFavouriteCourse")
+    public ResponseEntity<FavouriteCourse> createExam_User(@RequestBody FavouriteCourseDto favouriteCourseDto) {
+        FavouriteCourse favouriteCourse = favouriteCourseService.save(favouriteCourseDto);
+        return ResponseEntity.ok().body(favouriteCourse);
     }
 }

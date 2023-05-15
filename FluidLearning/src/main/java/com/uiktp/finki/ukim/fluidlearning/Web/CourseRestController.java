@@ -60,5 +60,4 @@ public class CourseRestController {
     public ResponseEntity<List<Exam>> getAllExamsForCourse(@PathVariable Integer courseUserId) {
         return ResponseEntity.ok(course_userService.getAllExamsByCourseUserId(courseUserId));
     }
-
 }
