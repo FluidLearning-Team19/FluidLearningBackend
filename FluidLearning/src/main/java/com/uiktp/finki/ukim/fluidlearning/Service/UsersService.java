@@ -17,5 +17,7 @@ public interface UsersService {
 
     Users findByUsername(String username);
 
+    Users findByUsernameandPassword(String username, String password);
+
     Users findAuthenticatedUser();
 }

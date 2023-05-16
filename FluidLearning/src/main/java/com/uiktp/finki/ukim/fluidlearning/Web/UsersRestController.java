@@ -3,6 +3,7 @@ package com.uiktp.finki.ukim.fluidlearning.Web;
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Course;
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.FavouriteCourse;
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Users;
+import com.uiktp.finki.ukim.fluidlearning.Models.Exceptions.FluidNotFoundException;
 import com.uiktp.finki.ukim.fluidlearning.Models.dto.CourseDto;
 import com.uiktp.finki.ukim.fluidlearning.Models.dto.Exam_UserDto;
 import com.uiktp.finki.ukim.fluidlearning.Models.dto.FavouriteCourseDto;
@@ -124,5 +125,14 @@ public class UsersRestController {
     public ResponseEntity<FavouriteCourse> addFavouriteCourseForUser(@RequestBody FavouriteCourseDto favouriteCourseDto) {
         FavouriteCourse favouriteCourse = favouriteCourseService.save(favouriteCourseDto);
         return ResponseEntity.ok().body(favouriteCourse);
+    }
+
+    @RequestMapping(value = "/loginUser", method = RequestMethod.POST)
+    public @ResponseBody ResponseEntity<Users> login(@RequestParam String username, String password){
+        Users user = usersService.findByUsernameandPassword(username, password);
+        if (user == null)
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        else
+            return ResponseEntity.ok().body(user);
     }
 }

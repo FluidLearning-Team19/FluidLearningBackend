@@ -76,6 +76,17 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public Users findByUsernameandPassword(String username, String password) {
+        Users user = findByUsername(username);
+        if(passwordEncoder.matches(password,user.getPassword())){
+            return user;
+        }
+        else {
+            return null;
+        }
+    }
+
+    @Override
     public Users findAuthenticatedUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
