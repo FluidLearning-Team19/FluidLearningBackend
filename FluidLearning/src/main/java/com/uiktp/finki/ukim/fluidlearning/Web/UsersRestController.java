@@ -63,11 +63,11 @@ public class UsersRestController {
     }
 
     @GetMapping("/{id}/courses")
-    public ResponseEntity<List<CourseDto>> getCoursesByUserId(@PathVariable Integer id) {
+    public ResponseEntity<List<CourseWithIdDto>> getCoursesByUserId(@PathVariable Integer id) {
         List<Course> courseForUser =  this.course_userService.findAllCoursesForUser(id);
 
-        List<CourseDto> courseDtos = courseForUser.stream()
-                .map(s -> modelMapper.map(s, CourseDto.class))
+        List<CourseWithIdDto> courseDtos = courseForUser.stream()
+                .map(s -> modelMapper.map(s, CourseWithIdDto.class))
                 .toList();
 
         return ResponseEntity.ok().body(courseDtos);
