@@ -1,6 +1,7 @@
 package com.uiktp.finki.ukim.fluidlearning.Service;
 
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Users;
+import com.uiktp.finki.ukim.fluidlearning.Models.dto.UserDtoRequest;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface UsersService {
 
     Users findUserById(int userId);
 
-    Users createUser(Users user);
+    Users createUser(UserDtoRequest user);
 
     Users updateUser(int userId, Users user);
 

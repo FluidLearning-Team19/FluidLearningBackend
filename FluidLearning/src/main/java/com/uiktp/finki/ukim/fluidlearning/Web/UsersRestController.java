@@ -74,9 +74,9 @@ public class UsersRestController {
     }
 
     @PostMapping
-    public ResponseEntity<UsersDto> createUser(@RequestBody UsersDto userDto) {
+    public ResponseEntity<UsersDto> createUser(@RequestBody UserDtoRequest userDto) {
 
-        Users userToAdd = modelMapper.map(userDto, Users.class);
+        UserDtoRequest userToAdd = modelMapper.map(userDto, UserDtoRequest.class);
 
         Users user = usersService.createUser(userToAdd);
 

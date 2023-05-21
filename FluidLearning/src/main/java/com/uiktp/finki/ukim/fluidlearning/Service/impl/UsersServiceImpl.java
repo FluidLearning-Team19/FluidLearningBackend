@@ -2,6 +2,7 @@ package com.uiktp.finki.ukim.fluidlearning.Service.impl;
 
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Users;
 import com.uiktp.finki.ukim.fluidlearning.Models.Exceptions.FluidNotFoundException;
+import com.uiktp.finki.ukim.fluidlearning.Models.dto.UserDtoRequest;
 import com.uiktp.finki.ukim.fluidlearning.Repository.UsersRepository;
 import com.uiktp.finki.ukim.fluidlearning.Service.UsersService;
 import org.springframework.security.core.Authentication;
@@ -35,7 +36,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Users createUser(Users user) {
+    public Users createUser(UserDtoRequest user) {
         Users newUser = new Users();
         newUser.setUsername(user.getUsername());
         newUser.setFirstName(user.getFirstName());
@@ -44,7 +45,7 @@ public class UsersServiceImpl implements UsersService {
         newUser.setDateOfBirth(user.getDateOfBirth());
         newUser.setDateCreated(LocalDateTime.now());
         newUser.setPassword(passwordEncoder.encode(user.getPassword()));
-        newUser.setRole(user.getRole());
+        newUser.setRole("USER");
         return this.userRepository.save(newUser);
     }
 
@@ -92,6 +93,4 @@ public class UsersServiceImpl implements UsersService {
 
         return findByUsername((String) auth.getPrincipal());
     }
-
-
 }
