@@ -1,6 +1,7 @@
 package com.uiktp.finki.ukim.fluidlearning.Service.impl;
 
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Exam;
+import com.uiktp.finki.ukim.fluidlearning.Models.Entities.ExamQuestion;
 import com.uiktp.finki.ukim.fluidlearning.Models.Exceptions.ExamNotFoundException;
 import com.uiktp.finki.ukim.fluidlearning.Models.dto.ExamDto;
 import com.uiktp.finki.ukim.fluidlearning.Repository.Course_UserRepository;
@@ -10,6 +11,7 @@ import com.uiktp.finki.ukim.fluidlearning.Service.ProgressService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
