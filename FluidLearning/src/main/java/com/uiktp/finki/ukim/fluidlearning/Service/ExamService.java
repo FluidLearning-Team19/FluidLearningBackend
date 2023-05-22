@@ -1,6 +1,8 @@
 package com.uiktp.finki.ukim.fluidlearning.Service;
 
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Exam;
+import com.uiktp.finki.ukim.fluidlearning.Models.Entities.ExamQuestion;
+
 import com.uiktp.finki.ukim.fluidlearning.Models.dto.ExamDto;
 
 import java.util.List;
