@@ -31,6 +31,11 @@ public class ExamAnswerServiceImpl implements ExamAnswerService {
     }
 
     @Override
+    public ExamAnswer findByExamQuestion_Id(Integer id) {
+        return examAnswerRepository.findByExamQuestion_Id(id);
+    }
+
+    @Override
     public Optional<ExamAnswer> save(String content, Integer isRightAnswer, ExamQuestion examQuestion) {
         ExamAnswer examAnswer = new ExamAnswer(content, isRightAnswer, examQuestion);
 
