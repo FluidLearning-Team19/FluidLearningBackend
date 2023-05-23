@@ -4,8 +4,11 @@ package com.uiktp.finki.ukim.fluidlearning.Web;
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Course;
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Exam;
 import com.uiktp.finki.ukim.fluidlearning.Models.dto.CourseDto;
+import com.uiktp.finki.ukim.fluidlearning.Models.dto.CourseWithIdDto;
+import com.uiktp.finki.ukim.fluidlearning.Models.dto.ExamWithIdDto;
 import com.uiktp.finki.ukim.fluidlearning.Service.CourseService;
 import com.uiktp.finki.ukim.fluidlearning.Service.Course_UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,10 +21,12 @@ public class CourseRestController {
 
     private final CourseService courseService;
     private final Course_UserService course_userService;
+    private final ModelMapper modelMapper;
 
-    public CourseRestController(CourseService courseService, Course_UserService course_userService) {
+    public CourseRestController(CourseService courseService, Course_UserService course_userService, ModelMapper modelMapper) {
         this.courseService = courseService;
         this.course_userService = course_userService;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping
@@ -57,7 +62,14 @@ public class CourseRestController {
     }
 
     @GetMapping("/exams/{courseUserId}")
-    public ResponseEntity<List<Exam>> getAllExamsForCourse(@PathVariable Integer courseUserId) {
-        return ResponseEntity.ok(course_userService.getAllExamsByCourseUserId(courseUserId));
+    public ResponseEntity<List<ExamWithIdDto>> getAllExamsForCourse(@PathVariable Integer courseUserId) {
+
+        List<Exam> exams = course_userService.getAllExamsByCourseUserId(courseUserId);
+
+        List<ExamWithIdDto> examDtos = exams.stream()
+                .map(e -> modelMapper.map(e, ExamWithIdDto.class))
+                .toList();
+
+        return ResponseEntity.ok(examDtos);
     }
 }
