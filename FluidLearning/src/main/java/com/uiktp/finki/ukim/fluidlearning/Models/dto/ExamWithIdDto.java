@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExamWithIdDto {
-
     private String id;
     private String code;
     private String title;

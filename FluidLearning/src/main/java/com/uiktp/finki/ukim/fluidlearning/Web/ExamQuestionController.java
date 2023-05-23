@@ -1,7 +1,9 @@
 package com.uiktp.finki.ukim.fluidlearning.Web;
 
+import com.uiktp.finki.ukim.fluidlearning.Models.Entities.Exam;
 import com.uiktp.finki.ukim.fluidlearning.Models.Entities.ExamQuestion;
 import com.uiktp.finki.ukim.fluidlearning.Models.dto.ExamQuestionDto;
+import com.uiktp.finki.ukim.fluidlearning.Models.dto.ExamWithIdDto;
 import com.uiktp.finki.ukim.fluidlearning.Service.ExamQuestionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +30,11 @@ public class ExamQuestionController {
         return this.examQuestionService.findById(id)
                 .map(examQuestion -> ResponseEntity.ok().body(examQuestion))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
+    }
+
+    @GetMapping("/exam/{id}")
+    public List<ExamQuestion> findByExamId(@PathVariable Integer id) {
+        return examQuestionService.getExamQuestionByExamId(id);
     }
 
     @PostMapping("/add")
