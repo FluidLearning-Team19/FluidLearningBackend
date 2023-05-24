@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface ExamQuestionService {
     Optional<ExamQuestion> findById(Integer id);
     List<ExamQuestion> findAll();
-    List<ExamQuestion> getExamQuestionByExamId(Integer examId);
+    List<ExamQuestion> getExamQuestionsByExamId(Integer examId);
     Optional<ExamQuestion> save(String content, int points, Exam exam);
     Optional<ExamQuestion> save(ExamQuestionDto examQuestionDto);
     Optional<ExamQuestion> edit(Integer id, String content, int points, Exam exam);

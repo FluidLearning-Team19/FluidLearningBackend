@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ExamQuestionRepository extends JpaRepository<ExamQuestion, Integer> {
-    List<ExamQuestion> getExamQuestionByExamId(Integer examId);
+    List<ExamQuestion> getExamQuestionsByExamId(Integer examId);
 }

@@ -31,9 +31,8 @@ public class ExamQuestionServiceImpl implements ExamQuestionService {
     }
 
     @Override
-    public List<ExamQuestion> getExamQuestionByExamId(Integer examId) {
-        List<ExamQuestion> questionList = examQuestionRepository.getExamQuestionByExamId(examId);
-        return questionList;
+    public List<ExamQuestion> getExamQuestionsByExamId(Integer examId) {
+        return examQuestionRepository.getExamQuestionsByExamId(examId);
     }
 
     @Override
