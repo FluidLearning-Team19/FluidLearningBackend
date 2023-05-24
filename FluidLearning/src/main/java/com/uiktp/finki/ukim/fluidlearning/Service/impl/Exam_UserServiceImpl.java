@@ -37,25 +37,25 @@ public class Exam_UserServiceImpl implements Exam_UserService {
     @Override
     public void create(Integer examId, Exam_UserDto exam_userDto) {
 
-        Exam exam = examService.findById(examId);
-        Users user = usersService.findAuthenticatedUser();
-
-        List<ExamQuestion> questions = examQuestionService.findAll().stream().filter(question -> question.getExam().getId() == exam.getId()).toList();
-
-        Integer totalPoints = 0;
-
-        for(ExamQuestion question : questions){
-            ExamAnswer examAnswer = examAnswerRepository.findByExamQuestion_Id(question.getId());
-
-            if (examAnswer.getIsRightAnswer() == 1){
-                totalPoints += question.getPoints();
-            }
-        }
-
-        Exam_User exam_user = new Exam_User(exam, user, exam_userDto.getTotalScore());
-        exam_user.setTotalScore(totalPoints);
-
-        exam_userRepository.save(exam_user);
+//        Exam exam = examService.findById(examId);
+//        Users user = usersService.findAuthenticatedUser();
+//
+//        List<ExamQuestion> questions = examQuestionService.findAll().stream().filter(question -> question.getExam().getId() == exam.getId()).toList();
+//
+//        Integer totalPoints = 0;
+//
+//        for(ExamQuestion question : questions){
+//            ExamAnswer examAnswer = examAnswerRepository.findByExamQuestion_Id(question.getId());
+//
+//            if (examAnswer.getIsRightAnswer() == 1){
+//                totalPoints += question.getPoints();
+//            }
+//        }
+//
+//        Exam_User exam_user = new Exam_User(exam, user, exam_userDto.getTotalScore());
+//        exam_user.setTotalScore(totalPoints);
+//
+//        exam_userRepository.save(exam_user);
     }
 
     @Override

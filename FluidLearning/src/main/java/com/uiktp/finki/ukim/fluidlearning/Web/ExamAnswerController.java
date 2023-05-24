@@ -44,4 +44,9 @@ public class ExamAnswerController {
             return ResponseEntity.ok().build();
         return ResponseEntity.badRequest().build();
     }
+
+    @GetMapping("/examQuestion/{id}")
+    public List<ExamAnswer> retrieveAllAnswersByQuestion(@PathVariable Integer id){
+        return this.examAnswerService.findAllByExamQuestionId(id);
+    }
 }

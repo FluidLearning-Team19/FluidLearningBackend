@@ -31,8 +31,8 @@ public class ExamAnswerServiceImpl implements ExamAnswerService {
     }
 
     @Override
-    public ExamAnswer findByExamQuestion_Id(Integer id) {
-        return examAnswerRepository.findByExamQuestion_Id(id);
+    public List<ExamAnswer> findAllByExamQuestionId(Integer id) {
+        return examAnswerRepository.getExamAnswersByExamQuestionId(id);
     }
 
     @Override
